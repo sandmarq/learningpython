@@ -1,4 +1,6 @@
 import paho.mqtt.client as mqtt
+import datetime
+import time
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -10,8 +12,10 @@ def on_connect(client, userdata, rc):
 
 
 def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.payload.decode("UTF-8")))
-
+    f = open('myfile.csv', 'a')
+    print(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "," + msg.topic + "," + str(msg.payload.decode("UTF-8")))
+    f.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S') + "," + msg.topic + "," + str(msg.payload.decode("UTF-8")) + "\n")
+    f.close()
 
 client = mqtt.Client()
 client.on_connect = on_connect

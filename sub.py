@@ -8,8 +8,8 @@ def on_connect(client, userdata, rc):
     print(
         "Connected with result code " + str(rc))  # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe([("/leds/esp8266_1", 0), ("/leds/esp8266_2", 2), ("/leds/esp8266_3", 2), ("/leds/esp8266_4", 2),
-                      ("/leds/esp8266_5", 2)])  # The callback for when a PUBLISH message is received from the server.
+    client.subscribe([("/home/room/esp8266_1", 0), ("/home/room/esp8266_2", 2), ("/home/room/esp8266_3", 2), ("/home/room/esp8266_4", 2),
+                      ("/home/room/esp8266_5", 2)])  # The callback for when a PUBLISH message is received from the server.
 
 
 def on_message(client, userdata, msg):
